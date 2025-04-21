@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOIC Gift</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</head>
+<body>
+    <div class="preloader">
+        <div class="circular-loader"></div>
+    </div>
+
+    <main class="gift-card">
+        <div class="container">
+            <div class="gift-header animate__animated animate__fadeIn">
+                <h1 class="h1">THE STOIC 6</h1>
+                <p class="subtitle">Framework For Your Startup Empire</p>
+            </div>
+
+            <div class="gift-content animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="img-holder">
+                    <img src="img.png" alt="STOIC resource Cover" class="img-cover">
+                    <div class="img-overlay"></div>
+                </div>
+
+                <h2 class="h2">Get Your Copy!</h2>
+                <p class="section-text">This resource is to connect the nodes of knowledge for your startup initiation.</p>
+                
+                <button class="download-btn" id="downloadBtn" aria-label="Download">
+                    <ion-icon name="download-outline" class="download-icon"></ion-icon>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-container animate__animated animate__zoomIn">
+            <button class="close-pdf" id="closePdfModal">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <h3>Your Download is Ready</h3>
+            <p>THE STOIC 6 : Framework For Your Startup Empire</p>
+            <a href="THESTOIC6.pdf" class="download-link" download="THE STOIC 6 : Framework For Your Startup Empire.pdf">
+                <span>Get it!</span>
+                <ion-icon name="arrow-down-circle-outline"></ion-icon>
+            </a>
+            <p class="section-text">Activating your entrepreneurial wisdom...</p>
+        </div>
+    </div>
+
+    <canvas id="neuralNetwork"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>

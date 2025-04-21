@@ -1,0 +1,421 @@
+:root {
+    --black: hsl(240, 6%, 8%);
+    --dark-gray: hsl(240, 5%, 12%);
+    --medium-gray: hsl(240, 3%, 25%);
+    --light-gray: hsl(240, 3%, 55%);
+    --white: hsl(0, 0%, 100%);
+    --deep-blue: hsl(220, 80%, 30%);
+    --accent: hsl(210, 100%, 60%);
+    --neuron-color: hsla(0, 0%, 100%, 0.8);
+    --synapse-color: hsla(0, 0%, 100%, 0.1);
+    --overlay: hsla(0, 0%, 0%, 0.85);
+    --ff-inter: 'Syne', sans-serif;
+    --fs-1: 3.2rem;
+    --fs-2: 2.2rem;
+    --fs-3: 1.6rem;
+    --fs-4: 1.4rem;
+    --fs-5: 1.1rem;
+    --fs-6: 1rem;
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --section-padding: 80px;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-pill: 50px;
+    --transition-1: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+    --transition-2: 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* Base Styles */
+body {
+    font-family: var(--ff-inter);
+    background-color: var(--black);
+    color: var(--light-gray);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Preloader */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--black);
+    display: grid;
+    place-items: center;
+    z-index: 9999;
+    transition: opacity var(--transition-2), visibility var(--transition-2);
+}
+
+.preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.circular-loader {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--white);
+    animation: spin 1s linear infinite;
+    position: relative;
+}
+
+.circular-loader::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-top-color: var(--white);
+    opacity: 0.5;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Neural Network Canvas */
+#neuralNetwork {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, var(--deep-blue), var(--black));
+}
+
+/* Gift Card Container */
+.gift-card {
+    padding: var(--section-padding) 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header Styles */
+.gift-header {
+    margin-bottom: 60px;
+}
+
+.h1 {
+    font-size: var(--fs-1);
+    font-weight: var(--fw-semibold);
+    color: var(--white);
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: var(--fs-4);
+    font-weight: var(--fw-light);
+    color: var(--light-gray);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+/* Content Styles */
+.gift-content {
+    background-color: rgba(18, 18, 24, 0.7);
+    border-radius: var(--radius-lg);
+    padding: 50px 40px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition-1), box-shadow var(--transition-1);
+}
+
+.gift-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+}
+
+.img-holder {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    aspect-ratio: 2/3;
+    margin: 0 auto 30px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform var(--transition-2);
+}
+
+.img-holder:hover .img-cover {
+    transform: scale(1.05);
+}
+
+.img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity var(--transition-1);
+}
+
+.img-holder:hover .img-overlay {
+    opacity: 1;
+}
+
+.h2 {
+    font-size: var(--fs-2);
+    font-weight: var(--fw-semibold);
+    color: var(--white);
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.section-text {
+    font-size: var(--fs-4);
+    font-weight: var(--fw-light);
+    color: var(--light-gray);
+    margin-bottom: 30px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+/* Minimalist Download Button */
+/* Minimalist Download Button */
+.download-btn {
+    width: 60px;
+    height: 60px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    margin: 30px auto 0;
+    position: relative;
+    transition: all var(--transition-1);
+}
+
+.download-icon {
+    font-size: 2rem;
+    color: var(--white);
+    transition: all var(--transition-1);
+    transform: translateY(0);
+}
+
+.download-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-1);
+}
+
+.download-btn:hover {
+    transform: translateY(-3px);
+}
+
+.download-btn:hover .download-icon {
+    color: var(--accent);
+    transform: translateY(0);
+    animation: none; /* Remove any previous bounce animation */
+}
+
+.download-btn:hover::before {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(33, 150, 243, 0.3);
+}
+
+/* New smooth hover animation */
+.download-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width var(--transition-1), height var(--transition-1);
+}
+
+.download-btn:hover::after {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+/* Modal Styles */
+.pdf-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-2);
+    backdrop-filter: blur(10px);
+}
+
+.pdf-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pdf-container {
+    background-color: rgba(18, 18, 24, 0.9);
+    border-radius: var(--radius-lg);
+    padding: 50px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform var(--transition-1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pdf-modal.active .pdf-container {
+    transform: scale(1);
+}
+
+.pdf-container h3 {
+    font-size: var(--fs-3);
+    font-weight: var(--fw-semibold);
+    color: var(--white);
+    margin-bottom: 16px;
+}
+
+.pdf-container p {
+    font-size: var(--fs-5);
+    color: var(--light-gray);
+    margin-bottom: 30px;
+}
+
+.download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    font-family: var(--ff-inter);
+    font-size: var(--fs-5);
+    font-weight: var(--fw-medium);
+    text-decoration: none;
+    margin-top: 20px;
+    padding: 16px 32px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.1);
+    transition: var(--transition-1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.download-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.download-link ion-icon {
+    transition: transform var(--transition-1);
+}
+
+.download-link:hover ion-icon {
+    transform: translateY(3px);
+}
+
+.close-pdf {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: var(--light-gray);
+    font-size: 24px;
+    cursor: pointer;
+    transition: var(--transition-1);
+    padding: 8px;
+    border-radius: var(--radius-circle);
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+}
+
+.close-pdf:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    :root {
+        --fs-1: 2.6rem;
+        --fs-2: 2rem;
+        --section-padding: 60px 20px;
+    }
+    
+    .gift-content {
+        padding: 40px 20px;
+    }
+    
+    .pdf-container {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --fs-1: 2.2rem;
+        --fs-2: 1.8rem;
+        --fs-4: 1.2rem;
+    }
+    
+    .download-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .img-holder {
+        max-width: 200px;
+    }
+}
